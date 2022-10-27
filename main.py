@@ -50,12 +50,12 @@ left_click = 1
 gaming = True
 
 # Start Button
-startButton_x, startButton_y, startButton_width, startButton_height = 300, 320, 150, 50
+startButton_x, startButton_y, startButton_width, startButton_height = 350, 550, 50, 25
 startButton = pygame.Rect(startButton_x, startButton_y, startButton_width, startButton_height)
 onStartButton, START_GAME = False, False
 
 # Drop Claw Button
-dropButton_x, dropButton_y, dropButton_width, dropButton_height = 10, 440, 50, 50
+dropButton_x, dropButton_y, dropButton_width, dropButton_height = 650, 550, 50, 25
 dropButton = pygame.Rect(dropButton_x, dropButton_y, dropButton_width, dropButton_height)
 onDropButton, START_DROP = False, False
 isDropping = True
@@ -65,24 +65,27 @@ claw_x, claw_y = 0, 0
 claw_xChange, claw_yChange = 0, 0
 
 
-#Functions
-def joystickDefault(x,y,z):
+# Functions
+def joystickDefault(x, y, z):
     joystickImageNames = [joystickDefaultIcon, joystickLeft, joystickRight]
-    if z==0:
+    if z == 0:
         screen.blit(joystickImageNames[z], (x, y))
-    elif z==1:
+    elif z == 1:
         screen.blit(joystickImageNames[z], (x, y))
-    elif z==2:
+    elif z == 2:
         screen.blit(joystickImageNames[z], (x, y))
+
 
 def claw(x, y):
     screen.blit(clawMachineIcon, (x, y))
+
 
 def button_clicked_on(button, on_button):   # Works for start & drop buttons -> take <button> parameter to specify
     if event.type == pygame.MOUSEBUTTONDOWN and event.button == left_click \
             and button.collidepoint(position[0], position[1]):
         on_button = True
     return on_button
+
 
 def button_clicked_off(button, start_function, on_button):
     if event.type == pygame.MOUSEBUTTONUP and event.button == left_click \
@@ -93,8 +96,9 @@ def button_clicked_off(button, start_function, on_button):
         on_button = False
     return start_function, on_button
 
+
 def move_claw(x):
-    '''
+    """
     Wasn't able to figure out how to do the bounds using this so temporarily commented out
     if event.type == pygame.KEYDOWN:
         if event.key == pygame.K_LEFT and x > 0:
@@ -109,7 +113,7 @@ def move_claw(x):
         if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
             change = 0
             z = 0
-    '''
+    """
     if keys[pygame.K_LEFT] and x > 0:
         change = -5
         z = 1
@@ -122,6 +126,19 @@ def move_claw(x):
     return change, z
 
 
+def drop_claw(is_dropping, x, y):
+    x_change, y_change = 0, 0
+    if y > 400:
+        is_dropping = False
+    if is_dropping:
+        y_change = 5
+    elif not is_dropping and y != 0:
+        y_change = -5
+    elif y == 0 and x > 0:
+        x_change = -5
+    return is_dropping, x_change, y_change
+
+
 # Gameplay
 while gaming:
     event = pygame.event.poll()
@@ -130,9 +147,30 @@ while gaming:
     screen.blit(background, (0, 0))
     if event.type == pygame.QUIT:
         gaming = False
-    claw_xChange, joy_z = move_claw(claw_x)
-    claw_x += claw_xChange
     joystickDefault(-50, 450, joy_z)
     claw(claw_x, claw_y)
+    pygame.draw.rect(screen, (255, 255, 255), startButton)
+    pygame.draw.rect(screen, (255, 0, 0), dropButton)
+
+    if not START_GAME:
+        onStartButton = button_clicked_on(startButton, onStartButton)
+        if onStartButton:
+            START_GAME, onStartButton = button_clicked_off(startButton, START_GAME, onStartButton)
+
+    if START_GAME:
+        if not START_DROP:
+            onDropButton = button_clicked_on(dropButton, onDropButton)
+            if onDropButton:
+                START_DROP, onDropButton = button_clicked_off(dropButton, START_DROP, onDropButton)
+            claw_xChange, joy_z = move_claw(claw_x)
+            claw_x += claw_xChange
+            joystickDefault(-50, 450, joy_z)
+            claw(claw_x, claw_y)
+
+        if START_DROP:
+            isDropping, claw_xChange, claw_yChange = drop_claw(isDropping, claw_x, claw_y)
+            claw_x += claw_xChange
+            claw_y += claw_yChange
+            claw(claw_x, claw_y)
     pygame.display.update()
     clock.tick(60)
