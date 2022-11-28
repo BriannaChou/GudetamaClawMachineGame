@@ -48,6 +48,7 @@ joystick_sprites = dict()
 joy_z = 0
 left_click = 1
 gaming = True
+GAME_COMPLETE = False
 
 # Start Button
 startButton_x, startButton_y, startButton_width, startButton_height = 350, 550, 50, 25
@@ -127,8 +128,8 @@ def move_claw(x):
 
 
 def drop_claw(is_dropping, x, y):
-    x_change, y_change = 0, 0
-    if y > 400:
+    x_change, y_change, drop_complete = 0, 0, False
+    if y > 325:
         is_dropping = False
     if is_dropping:
         y_change = 5
@@ -136,7 +137,19 @@ def drop_claw(is_dropping, x, y):
         y_change = -5
     elif y == 0 and x > 0:
         x_change = -5
-    return is_dropping, x_change, y_change
+    if not is_dropping and y == 0 and x == 0:
+        drop_complete = True
+    if x_change == 0:
+        pygame.draw.rect(screen, (0, 0, 0), (x + 47, 0, 7, y))
+    return is_dropping, x_change, y_change, drop_complete
+
+
+def game_reset():
+    start_game = False
+    start_drop = False
+    dropping = True
+    game_complete = False
+    return start_game, start_drop, dropping, game_complete
 
 
 # Gameplay
@@ -168,9 +181,12 @@ while gaming:
             claw(claw_x, claw_y)
 
         if START_DROP:
-            isDropping, claw_xChange, claw_yChange = drop_claw(isDropping, claw_x, claw_y)
+            isDropping, claw_xChange, claw_yChange, GAME_COMPLETE = drop_claw(isDropping, claw_x, claw_y)
             claw_x += claw_xChange
             claw_y += claw_yChange
             claw(claw_x, claw_y)
+
+        if GAME_COMPLETE:
+            START_GAME, START_DROP, isDropping, GAME_COMPLETE = game_reset()
     pygame.display.update()
     clock.tick(60)
