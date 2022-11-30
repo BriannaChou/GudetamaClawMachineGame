@@ -1,3 +1,6 @@
+'''Brianna's Code for working and experimenting
+XML for screen hierarchy and to have those value go into'''
+
 import pygame
 
 #Intialize the Pygame
@@ -28,10 +31,6 @@ joystickLeft = pygame.transform.scale(joystickLeft,(250,250))
 joystickRight = pygame.image.load("../images/joystick_right.png")
 joystickRight = pygame.transform.scale(joystickRight,(250,250))
 
-#Buttons
-dropButton_x, dropButton_y, dropButton_width, dropButton_height = 10, 440, 50, 50
-dropButton = pygame.Rect(dropButton_x, dropButton_y, dropButton_width, dropButton_height)
-
 x = 0
 y = 0
 z=0
@@ -53,11 +52,11 @@ def joystickDefault(x,y,z):
 #Game loop
 gaming = True
 while gaming:
-    screen.fill((0,0,0))
+    #screen.fill((0,0,0))
     screen.blit(background, (0,0))
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            crashed = True
+            gaming = False
         ############################
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:

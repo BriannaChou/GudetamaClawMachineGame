@@ -26,7 +26,7 @@ claw_x, claw_y, claw_width, claw_height = 680, 20, 50, 50
 
 LEFT = 1
 run = True
-vel = 2
+vel = 0.5
 onStartButton = False
 START_GAME = False
 onDropButton = False
