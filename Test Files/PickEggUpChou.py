@@ -24,6 +24,15 @@ pygame.display.set_caption("Gudetama Claw Machine Game")
 # Claw Machine
 clawMachineIcon = pygame.image.load("../images/ClawMachineIcon.png")
 clawMachineIcon = pygame.transform.scale(clawMachineIcon, (100, 150))
+clawMachineIconBlue = pygame.image.load("../images/ClawWithBlueEgg.png")
+clawMachineIconBlue = pygame.transform.scale(clawMachineIconBlue, (100, 150))
+clawMachineIconGold = pygame.image.load("../images/ClawWithGoldEgg.png")
+clawMachineIconGold = pygame.transform.scale(clawMachineIconGold, (100, 150))
+clawMachineIconRed = pygame.image.load("../images/ClawWithRedEgg.png")
+clawMachineIconRed = pygame.transform.scale(clawMachineIconRed, (100, 150))
+clawMachineIconYellow = pygame.image.load("../images/ClawWithYellowEgg.png")
+clawMachineIconYellow = pygame.transform.scale(clawMachineIconYellow, (100, 150))
+
 
 # Joystick
 joystickDefaultIcon = pygame.image.load("../images/joystick_default.png")
@@ -66,9 +75,20 @@ def joystickDefault(x, y, z):
     elif z == 2:
         screen.blit(joystickImageNames[z], (x, y))
 
-
-def claw(x, y):
-    screen.blit(clawMachineIcon, (x, y))
+ #need to update this for when egg is caught!
+def claw(x, y, initialNum):
+    #This is only for TESTING reasons for experimenting with claw images!
+    if isDropping and y<325:
+        screen.blit(clawMachineIcon, (x, y))
+    else:
+        if isDropping == False and initialNum == 0:
+            screen.blit(clawMachineIconBlue, (x, y))
+        elif isDropping == False and initialNum == 1:
+            screen.blit(clawMachineIconGold, (x, y))
+        elif isDropping == False and initialNum == 2:
+            screen.blit(clawMachineIconRed, (x, y))
+        elif isDropping == False and initialNum == 3:
+            screen.blit(clawMachineIconYellow, (x, y))
 
 
 def button_clicked_on(button, on_button):   # Works for start & drop buttons -> take <button> parameter to specify
@@ -103,7 +123,7 @@ def move_claw(x):
 
 def drop_claw(is_dropping, x, y):
     x_change, y_change, drop_complete = 0, 0, False
-    if y > 325:
+    if y > 325:   #Where claw goes back up
         is_dropping = False
     if is_dropping:
         y_change = 5
@@ -125,7 +145,7 @@ def game_reset():
     game_complete = False
     return start_game, start_drop, dropping, game_complete
 
-
+num = random.Random().randrange(0, 4) #Deciding which image to do
 # Gameplay
 while gaming:
     event = pygame.event.poll()
@@ -135,7 +155,7 @@ while gaming:
     if event.type == pygame.QUIT:
         gaming = False
     joystickDefault(-50, 450, joy_z)
-    claw(claw_x, claw_y)
+    claw(claw_x, claw_y, num)
     pygame.draw.rect(screen, (255, 255, 255), startButton)
     pygame.draw.rect(screen, (255, 0, 0), dropButton)
 
@@ -152,13 +172,13 @@ while gaming:
             claw_xChange, joy_z = move_claw(claw_x)
             claw_x += claw_xChange
             joystickDefault(-50, 450, joy_z)
-            claw(claw_x, claw_y)
+            claw(claw_x, claw_y, num)
 
         if START_DROP:
             isDropping, claw_xChange, claw_yChange, GAME_COMPLETE = drop_claw(isDropping, claw_x, claw_y)
             claw_x += claw_xChange
             claw_y += claw_yChange
-            claw(claw_x, claw_y)
+            claw(claw_x, claw_y, num)
 
         if GAME_COMPLETE:
             START_GAME, START_DROP, isDropping, GAME_COMPLETE = game_reset()
