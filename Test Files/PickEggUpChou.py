@@ -1,7 +1,6 @@
 """This file is specifically for experimenting with egg images, and
 having the claw pick the egg up and go back to default position
 """
-
 import pygame
 import random
 
@@ -56,18 +55,6 @@ isDropping = True
 claw_x, claw_y = 0, 0
 claw_xChange, claw_yChange = 0, 0
 
-#class for eggs
-class EllipseSprite(pygame.sprite.Sprite):
-    def __init__(self, color, width, height):
-        super().__init__()
-
-        self.image = pygame.Surface([width, height])
-        self.image.fill(SURFACE_COLOR)
-        self.image.set_colorkey(COLOR)
-
-        pygame.draw.ellipse(self.image, color, pygame.Rect(0, 0, width, height))
-
-        self.rect = self.image.get_rect()
 
 # Functions
 def joystickDefault(x, y, z):
@@ -138,11 +125,7 @@ def game_reset():
     game_complete = False
     return start_game, start_drop, dropping, game_complete
 
-def add_sprites():
-    global current
-    global FILLED
-    bounds = []
-    failures = 0
+
 # Gameplay
 while gaming:
     event = pygame.event.poll()
