@@ -6,17 +6,19 @@ pygame.init()
 
 screen = pygame.display.set_mode((800, 600))
 
-# Dimensions need to be different --> different file sizes
+# Dimensions need to be different --> different file sizes -- **FIXED**
 # Which color is which rarity is temp
-eggDimensions = (60, 60)
+egg_width = 47
+egg_height = 60
+eggDimensions = (egg_width, egg_height)
 blue = pygame.image.load("../images/blueEgg.png")
 blue = pygame.transform.scale(blue, eggDimensions)
 red = pygame.image.load("../images/redEgg.png")
-red = pygame.transform.scale(red, (47, 60))
+red = pygame.transform.scale(red, eggDimensions)
 yellow = pygame.image.load("../images/yellowEgg.png")
-yellow = pygame.transform.scale(yellow, (47, 60))
+yellow = pygame.transform.scale(yellow, eggDimensions)
 gold = pygame.image.load("../images/goldenEgg_special.png")
-gold = pygame.transform.scale(gold, (47, 60))
+gold = pygame.transform.scale(gold, eggDimensions)
 
 
 class Egg(pygame.sprite.Sprite):
@@ -30,7 +32,7 @@ class Egg(pygame.sprite.Sprite):
 
 eggGroup = pygame.sprite.Group()
 current = 0
-numEggs = 15
+numEggs = 25
 eggBounds = []
 FILLED = False
 
@@ -56,9 +58,9 @@ def add_sprites():
             color = gold
 
         egg = Egg(color)
-        egg.rect.x = random.randint(0, screen.get_width() - eggDimensions[0])
-        egg.rect.y = random.randint(400, screen.get_height() - eggDimensions[1])
-        egg_rect = pygame.Rect(egg.rect.x, egg.rect.y, eggDimensions[0], eggDimensions[1])
+        egg.rect.x = random.randint(0, screen.get_width() - egg_width)
+        egg.rect.y = random.randint(400, screen.get_height() - egg_height)
+        egg_rect = pygame.Rect(egg.rect.x, egg.rect.y, egg_width, egg_height)
 
         for rectangle in collision_bounds:
             if rectangle.colliderect(egg_rect):
