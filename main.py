@@ -43,23 +43,27 @@ joystickLeft = pygame.transform.scale(joystickLeft, (250, 250))
 joystickRight = pygame.image.load("images/joystick_right.png")
 joystickRight = pygame.transform.scale(joystickRight, (250, 250))
 
+# Start Button
+startButton_x, startButton_y, startButton_width, startButton_height = 350, 550, 100, 40
+start_rect = pygame.Rect(startButton_x, startButton_y, startButton_width, startButton_height)
+startButton = pygame.image.load("images/StartButton.png")
+startButton = pygame.transform.scale(startButton, (startButton_width, startButton_height))
+onStartButton, START_GAME = False, False
+
+# Drop Claw Button
+dropButton_x, dropButton_y, dropButton_width, dropButton_height = 600, 550, 100, 40
+drop_rect = pygame.Rect(dropButton_x, dropButton_y, dropButton_width, dropButton_height)
+dropButton = pygame.image.load("images/DropButton.png")
+dropButton = pygame.transform.scale(dropButton, (dropButton_width, dropButton_height))
+onDropButton, START_DROP = False, False
+isDropping = True
+
 # Other Variables
 joystick_sprites = dict()
 joy_z = 0
 left_click = 1
 gaming = True
 GAME_COMPLETE = False
-
-# Start Button
-startButton_x, startButton_y, startButton_width, startButton_height = 350, 550, 50, 25
-startButton = pygame.Rect(startButton_x, startButton_y, startButton_width, startButton_height)
-onStartButton, START_GAME = False, False
-
-# Drop Claw Button
-dropButton_x, dropButton_y, dropButton_width, dropButton_height = 650, 550, 50, 25
-dropButton = pygame.Rect(dropButton_x, dropButton_y, dropButton_width, dropButton_height)
-onDropButton, START_DROP = False, False
-isDropping = True
 
 # Claw Variables
 claw_x, claw_y = 0, 0
@@ -162,19 +166,19 @@ while gaming:
         gaming = False
     joystickDefault(-50, 450, joy_z)
     claw(claw_x, claw_y)
-    pygame.draw.rect(screen, (255, 255, 255), startButton)
-    pygame.draw.rect(screen, (255, 0, 0), dropButton)
+    screen.blit(startButton, (startButton_x, startButton_y))
+    screen.blit(dropButton, (dropButton_x, dropButton_y))
 
     if not START_GAME:
-        onStartButton = button_clicked_on(startButton, onStartButton)
+        onStartButton = button_clicked_on(start_rect, onStartButton)
         if onStartButton:
-            START_GAME, onStartButton = button_clicked_off(startButton, START_GAME, onStartButton)
+            START_GAME, onStartButton = button_clicked_off(start_rect, START_GAME, onStartButton)
 
     if START_GAME:
         if not START_DROP:
-            onDropButton = button_clicked_on(dropButton, onDropButton)
+            onDropButton = button_clicked_on(drop_rect, onDropButton)
             if onDropButton:
-                START_DROP, onDropButton = button_clicked_off(dropButton, START_DROP, onDropButton)
+                START_DROP, onDropButton = button_clicked_off(drop_rect, START_DROP, onDropButton)
             claw_xChange, joy_z = move_claw(claw_x)
             claw_x += claw_xChange
             joystickDefault(-50, 450, joy_z)
