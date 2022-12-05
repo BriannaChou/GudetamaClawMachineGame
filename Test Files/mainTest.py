@@ -94,7 +94,6 @@ gold = pygame.transform.scale(gold, eggDimensions)
 
 # Other Egg Variables
 eggGroup = pygame.sprite.Group()
-current = 0
 numEggs = 20
 eggBounds = []
 eggColors = []
@@ -142,10 +141,10 @@ def claw(x, y):
 
 
 def add_sprites():
-    global current
     global FILLED
     global eggBounds
     global eggColors
+    current = 0
     color = None
     eggValue = None
     collision_bounds = []
@@ -244,6 +243,7 @@ def drop_claw(is_dropping, x, y, width, height):
                     CAUGHT_EGG = eggGroup.sprites()[index]
                     eggGroup.remove(CAUGHT_EGG)
                     eggBounds.pop(index)
+                    print(len(eggGroup))
                     CAUGHT_EGG_COLOR = eggColors[index]
                     eggColors.pop(index)
                     print(CAUGHT_EGG_COLOR)
@@ -271,6 +271,9 @@ def game_reset():
     caught_egg = None
     caught_egg_color = None
     no_egg_grabbed = True
+    global FILLED
+    if len(eggGroup) == 0:
+        FILLED = False
     return start_game, start_drop, dropping, game_complete, caught_egg, caught_egg_color, no_egg_grabbed
 
 
