@@ -1,4 +1,5 @@
 import random
+import webbrowser
 import pygame
 
 # Initialize the Pygame
@@ -53,6 +54,19 @@ dropButton = pygame.image.load("../images/DropButton.png")
 dropButton = pygame.transform.scale(dropButton, (dropButton_width, dropButton_height))
 onDropButton, START_DROP = False, False
 isDropping = True
+
+# Rules and Gudex Icons
+icon_width, icon_height = 80, 100
+rules_x, rules_y = 810, 20
+gudex_x, gudex_y = 810, 150
+rules = pygame.image.load("../images/RulesAndHowToPlayIcon.png")
+rules = pygame.transform.scale(rules, (icon_width, icon_height))
+rules_rect = pygame.Rect(rules_x, rules_y, icon_width, icon_height)
+gudex = pygame.image.load("../images/GudexIcon.png")
+gudex = pygame.transform.scale(gudex, (icon_width, icon_height))
+gudex_rect = pygame.Rect(gudex_x, gudex_y, icon_width, icon_height)
+onRules = False
+onGudex = False
 
 # Other Variables
 joystick_sprites = dict()
@@ -261,6 +275,7 @@ while gaming:
     event = pygame.event.poll()
     position = pygame.mouse.get_pos()
     keys = pygame.key.get_pressed()
+    screen.fill((244, 238, 174))
     screen.blit(background, (0, 0))
     if event.type == pygame.QUIT:
         gaming = False
@@ -271,12 +286,19 @@ while gaming:
     if not FILLED:
         add_sprites()
     eggGroup.draw(screen)
+    screen.blit(rules, (rules_x, rules_y))
+    screen.blit(gudex, (gudex_x, gudex_y))
 
     if not START_GAME:
         onStartButton = button_clicked_on(start_rect, onStartButton)
         if onStartButton:
             START_GAME, onStartButton = button_clicked_off(start_rect, START_GAME, onStartButton)
-
+        # allow to check rules & gudex here
+        onRules = button_clicked_on(rules_rect, onRules)
+        if onRules:
+            webbrowser.open("http://localhost:63342/GudetamaClawMachineGame/rulesAndHowTo.html?_ijt=8alueor662jvoeuikcccm1g9v2&_ij_reload=RELOAD_ON_SAVE")
+            onRules = False
+    
     if START_GAME:
         if not START_DROP:
             onDropButton = button_clicked_on(drop_rect, onDropButton)

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Rules and How to Play</title>
+    <title>Rules and How-to-Play</title>
 </head>
 
 <style>
@@ -18,7 +18,7 @@
     }
     img {
         margin: 10px;
-        border: 3px solid #555;
+        justify-content: center;
     }
     hr {
         height: 1px;
@@ -46,14 +46,22 @@
         background: white;
     }
 
-    .column {
+    .rules-img {
         float: left;
-        width: 50%;
+        width: 10%;
         padding: 10px;
     }
-    .inner-column {
+    .rules-rules {
         float: left;
-        width: 50%;
+        width: 90%;
+        padding: 10px;
+    }
+    .col-container {
+        display: flex;
+        width: 100%;
+    }
+    .column {
+        flex: 2;
         padding: 10px;
     }
     .row:after {
@@ -61,18 +69,24 @@
         display: table;
         clear: both;
     }
-
 </style>
 
 <body>
 <article class="rules">
     <h1 class="rules">Rules</h1>
-    <article class="rules-list">
-        <ol>
-            <li>You cannot…</li>
-            <li>You must…</li>
-            <li style="padding-bottom:0">You need to…</li>
-        </ol>
+    <article class="col-container">
+        <article class="rules-img">
+            <img src="images/RulesAndHowToPlayIcon.png" alt="Rules and How-to-Play icon" height="100">
+        </article>
+        <article class="rules-rules">
+            <article class="rules-list">
+                <ol>
+                    <li>You cannot…</li>
+                    <li>You must…</li>
+                    <li style="padding-bottom:0">You need to…</li>
+                </ol>
+            </article>
+        </article>
     </article>
 </article>
 
@@ -82,42 +96,39 @@
     <h1 class="how-to-play">How to Play</h1>
     <article class="play-list">
         <div class="row">
-            <div class="column" style="background-color: #f4eeae;">
-                <div class="inner-column">
-                    <img src="images/gudetama_rect.png" alt="howto1" height="125"> <!---can add width="" value as well-->
+            <div class="col-container">
+                <div class="column" style="background-color: #f4eeae;">
+                    <img style="padding-left: 30px" src="images/RulesStart.png" alt="Start Game button" height="125">
                 </div>
-                <div class="inner-column">
+                <div class="column" style="background-color: #f4eeae">
                     <p>To start playing, click the start button.</p>
                 </div>
-            </div>
-            <div class="column" style="background-color: #f9f5d1;">
-                <div class="inner-column">
-                    <img src="images/gudetama_rect.png" alt="howto2" height="125">
+                <div class="column" style="background-color: #f9f5d1">
+                    <img style="padding-left: 30px" src="images/RulesArrows.png" alt="Left and Right arrow keys" height="125">
                 </div>
-                <div class="inner-column">
+                <div class="column" style="background-color: #f9f5d1">
                     <p>Use left and right arrow keys on the keyboard to move the claw left and right.</p>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="column" style="background-color: #f9f5d1;">
-                <div class="inner-column">
-                    <img src="images/gudetama_rect.png" alt="howto3" height="125">
+            <div class="col-container">
+                <div class="column" style="background-color: #f9f5d1;">
+                    <img style="padding-left: 30px" src="images/RulesDrop.png" alt="Drop Claw button" height="125">
                 </div>
-                <div class="inner-column">
+                <div class="column" style="background-color: #f9f5d1">
                     <p>To try and catch an egg, position the claw above an egg and click the drop button.</p>
                 </div>
-            </div>
-            <div class="column" style="background-color: #f4eeae;">
-                <div class="inner-column">
-                    <img src="images/gudetama_rect.png" alt="howto4" height="125">
+                <div class="column" style="background-color: #f4eeae">
+                    <img style="padding-left: 70px" src="images/GudexIcon.png" alt="Gudex icon" height="125">
                 </div>
-                <div class="inner-column">
+                <div class="column" style="background-color: #f4eeae">
                     <p>Congratulations! You have caught a Gudetama. Go to the <i>Gudex</i> to view your collection!</p>
                 </div>
             </div>
         </div>
     </article>
 </article>
+
 </body>
 </html>
