@@ -183,7 +183,7 @@ def add_sprites():
             eggValue = 3
 
         egg = Egg(color)
-        egg.rect.x = random.randint(egg_width // 4, screen_width - egg_width)
+        egg.rect.x = random.randint(10, screen_width - egg_width - 13)
         egg.rect.y = random.randint(350, 500 - egg_height)
         egg_rect = pygame.Rect(egg.rect.x, egg.rect.y, egg_width, egg_height)
 
