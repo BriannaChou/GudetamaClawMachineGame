@@ -149,8 +149,10 @@ def claw(x, y):
             screen.blit(clawMachineIconRed, (x, y))
         elif CAUGHT_EGG_COLOR == 2:
             screen.blit(clawMachineIconYellow, (x, y))
-        else:
+        elif CAUGHT_EGG_COLOR == 3:
             screen.blit(clawMachineIconGold, (x, y))
+        else:
+            screen.blit(clawMachineIcon, (x, y))
 
 
 def add_sprites():
@@ -181,7 +183,7 @@ def add_sprites():
             eggValue = 3
 
         egg = Egg(color)
-        egg.rect.x = random.randint(0, screen_width - egg_width)
+        egg.rect.x = random.randint(egg_width // 4, screen_width - egg_width)
         egg.rect.y = random.randint(350, 500 - egg_height)
         egg_rect = pygame.Rect(egg.rect.x, egg.rect.y, egg_width, egg_height)
 
@@ -255,7 +257,9 @@ def drop_claw(is_dropping, x, y, width, height):
                 if egg.collidepoint(clawMidpoint):
                     CAUGHT_EGG = eggGroup.sprites()[index]
                     eggGroup.remove(CAUGHT_EGG)
+                    eggBounds.pop(index)
                     CAUGHT_EGG_COLOR = eggColors[index]
+                    eggColors.pop(index)
                     print(CAUGHT_EGG_COLOR)
                     NO_EGG_GRABBED = False
                     break
@@ -312,6 +316,10 @@ while gaming:
             webbrowser.open(
                 "http://localhost:63342/GudetamaClawMachineGame/rulesAndHowTo.html?_ijt=8alueor662jvoeuikcccm1g9v2&_ij_reload=RELOAD_ON_SAVE")
             onRules = False
+        onGudex = button_clicked_on(gudex_rect, onGudex)
+        if onGudex:
+            print("clicked Gudex")
+            onGudex = False
 
     if START_GAME:
         if not START_DROP:
