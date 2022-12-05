@@ -6,7 +6,8 @@ pygame.init()
 
 # Create the screen
 screen_width, screen_height = 800, 600
-screen = pygame.display.set_mode((screen_width, screen_height))
+window_width, window_height = 900, 600
+screen = pygame.display.set_mode((window_width, window_height))
 
 # Clock
 clock = pygame.time.Clock()
@@ -152,7 +153,7 @@ def add_sprites():
             eggValue = 3
 
         egg = Egg(color)
-        egg.rect.x = random.randint(0, screen.get_width() - egg_width)
+        egg.rect.x = random.randint(0, screen_width - egg_width)
         egg.rect.y = random.randint(350, 500 - egg_height)
         egg_rect = pygame.Rect(egg.rect.x, egg.rect.y, egg_width, egg_height)
 
@@ -249,7 +250,10 @@ def game_reset():
     start_drop = False
     dropping = True
     game_complete = False
-    return start_game, start_drop, dropping, game_complete
+    caught_egg = None
+    caught_egg_color = None
+    no_egg_grabbed = True
+    return start_game, start_drop, dropping, game_complete, caught_egg, caught_egg_color, no_egg_grabbed
 
 
 # Gameplay
@@ -290,6 +294,6 @@ while gaming:
             claw(claw_x, claw_y)
 
         if GAME_COMPLETE:
-            START_GAME, START_DROP, isDropping, GAME_COMPLETE = game_reset()
+            START_GAME, START_DROP, isDropping, GAME_COMPLETE, CAUGHT_EGG, CAUGHT_EGG_COLOR, NO_EGG_GRABBED = game_reset()
     pygame.display.update()
     clock.tick(60)
