@@ -1,17 +1,3 @@
-"""Kayla and Brianna - We need to get buttons working on main page
-    Player cannot move claw until start button is pressed
-    Makes rules / how to play page
-    Eggs to appear
-    Egg work with claw
-    Have claw grab egg
-    Have egg open
-    Have egg added to Gudex
-    Have state of main page not change (like the eggs) until all eggs are caught,
-        and then reset
-    Having a total number of Gudetama eggs caught out of the total in the game
-   Logan - Linking the Gudex and Rules/How to Play page to the main page
-"""
-
 import random
 import pygame
 
@@ -26,43 +12,43 @@ screen = pygame.display.set_mode((screen_width, screen_height))
 clock = pygame.time.Clock()
 
 # Background
-background = pygame.image.load("images/GudetamaBackground.jpg")
+background = pygame.image.load("../images/GudetamaBackground.jpg")
 background = pygame.transform.scale(background, (800, 600))
 
 # Caption
 pygame.display.set_caption("Gudetama Claw Machine Game")
 
 # Claw Machine
-clawMachineIcon = pygame.image.load("images/ClawMachineIcon.png")
+clawMachineIcon = pygame.image.load("../images/ClawMachineIcon.png")
 clawMachineIcon = pygame.transform.scale(clawMachineIcon, (100, 150))
-clawMachineIconBlue = pygame.image.load("images/ClawWithBlueEgg.png")
+clawMachineIconBlue = pygame.image.load("../images/ClawWithBlueEgg.png")
 clawMachineIconBlue = pygame.transform.scale(clawMachineIconBlue, (100, 150))
-clawMachineIconGold = pygame.image.load("images/ClawWithGoldEgg.png")
+clawMachineIconGold = pygame.image.load("../images/ClawWithGoldEgg.png")
 clawMachineIconGold = pygame.transform.scale(clawMachineIconGold, (100, 150))
-clawMachineIconRed = pygame.image.load("images/ClawWithRedEgg.png")
+clawMachineIconRed = pygame.image.load("../images/ClawWithRedEgg.png")
 clawMachineIconRed = pygame.transform.scale(clawMachineIconRed, (100, 150))
-clawMachineIconYellow = pygame.image.load("images/ClawWithYellowEgg.png")
+clawMachineIconYellow = pygame.image.load("../images/ClawWithYellowEgg.png")
 clawMachineIconYellow = pygame.transform.scale(clawMachineIconYellow, (100, 150))
 
 # Joystick
-joystickDefaultIcon = pygame.image.load("images/joystick_default.png")
+joystickDefaultIcon = pygame.image.load("../images/joystick_default.png")
 joystickDefaultIcon = pygame.transform.scale(joystickDefaultIcon, (250, 250))
-joystickLeft = pygame.image.load("images/joystick_left.png")
+joystickLeft = pygame.image.load("../images/joystick_left.png")
 joystickLeft = pygame.transform.scale(joystickLeft, (250, 250))
-joystickRight = pygame.image.load("images/joystick_right.png")
+joystickRight = pygame.image.load("../images/joystick_right.png")
 joystickRight = pygame.transform.scale(joystickRight, (250, 250))
 
 # Start Button
 startButton_x, startButton_y, startButton_width, startButton_height = 350, 550, 100, 40
 start_rect = pygame.Rect(startButton_x, startButton_y, startButton_width, startButton_height)
-startButton = pygame.image.load("images/StartButton.png")
+startButton = pygame.image.load("../images/StartButton.png")
 startButton = pygame.transform.scale(startButton, (startButton_width, startButton_height))
 onStartButton, START_GAME = False, False
 
 # Drop Claw Button
 dropButton_x, dropButton_y, dropButton_width, dropButton_height = 600, 550, 100, 40
 drop_rect = pygame.Rect(dropButton_x, dropButton_y, dropButton_width, dropButton_height)
-dropButton = pygame.image.load("images/DropButton.png")
+dropButton = pygame.image.load("../images/DropButton.png")
 dropButton = pygame.transform.scale(dropButton, (dropButton_width, dropButton_height))
 onDropButton, START_DROP = False, False
 isDropping = True
@@ -82,13 +68,13 @@ claw_xChange, claw_yChange = 0, 0
 egg_width = 47
 egg_height = 60
 eggDimensions = (egg_width, egg_height)
-blue = pygame.image.load("images/blueEgg.png")
+blue = pygame.image.load("../images/blueEgg.png")
 blue = pygame.transform.scale(blue, eggDimensions)
-red = pygame.image.load("images/redEgg.png")
+red = pygame.image.load("../images/redEgg.png")
 red = pygame.transform.scale(red, eggDimensions)
-yellow = pygame.image.load("images/yellowEgg.png")
+yellow = pygame.image.load("../images/yellowEgg.png")
 yellow = pygame.transform.scale(yellow, eggDimensions)
-gold = pygame.image.load("images/goldenEgg_special.png")
+gold = pygame.image.load("../images/goldenEgg_special.png")
 gold = pygame.transform.scale(gold, eggDimensions)
 
 # Other Egg Variables
