@@ -1,0 +1,13 @@
+Gudex {
+     color: pink;
+     background-color : black;
+     width: 100%;
+}
+ Gudetama, name, id, type, rarity, {
+     display : block;
+}
+ name {
+     font-size : 25px;
+     font-weight : bold;
+}
+/* Used https://www.geeksforgeeks.org/displaying-xml-using-css/ as a refrence for the demo reference will expand up the CSS for the Final */
