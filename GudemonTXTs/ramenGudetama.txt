@@ -1,0 +1,6 @@
+    <Gudetama>
+        <name name="Ramen Gudetama">Ramen Gudetama</name>
+        <id id="1">No.1</id>
+        <type type="food">Food</type>
+        <rarity rarity="common">Common</rarity>
+    </Gudetama>

@@ -15,9 +15,17 @@
 import random
 import webbrowser
 import pygame
+import os
 
 # Initialize the Pygame
 pygame.init()
+
+# Create lists for Gudex
+global Gudemon_List
+global Gudemon_Caught
+
+Gudemon_Caught = []
+Gudemon_List = ["ramenGudetama", "curryGudetama", "eggGudetama", "toyGudetama", "hamburgerGudetama", "lifePerserverGudetama", "goldenTrophyGudetama"]
 
 # Create the screen
 screen_width, screen_height = 800, 600
@@ -259,6 +267,7 @@ def drop_claw(is_dropping, x, y, width, height):
                     eggBounds.pop(index)
                     CAUGHT_EGG_COLOR = eggColors[index]
                     eggColors.pop(index)
+                    add_Gudemon(CAUGHT_EGG_COLOR)
                     print(CAUGHT_EGG_COLOR)
                     NO_EGG_GRABBED = False
                     break
@@ -287,7 +296,44 @@ def game_reset():
     if len(eggGroup) == 0:
         FILLED = False
     return start_game, start_drop, dropping, game_complete, caught_egg, caught_egg_color, no_egg_grabbed
-
+# LOGAN: Function for adding gudemon to caught list if they are not yet added or returning nothing
+def add_Gudemon(color):
+    #legendary 3, rare 2, uncommon 1, common 0
+    # Things to be added:
+    #way to have pull in the data set instead of explictily calling parts of list
+    # Way to sort either through sorting the list but better to have sort methods through the XML AND STYLESHEET
+    if color == 3:
+        #rand = randomint()
+        Gudemon = Gudemon_List[6]
+    if color == 2:
+        rand = random.randint(4, 5)
+        Gudemon = Gudemon_List[rand]
+    if color == 1:
+        #rand = randomint()
+        Gudemon = Gudemon_List[3]
+    if color == 0:
+        rand = random.randint(0, 2)
+        Gudemon = Gudemon_List[rand]
+    if Gudemon not in Gudemon_Caught:
+        # add new gudemon
+        Gudemon_Caught.append(Gudemon)
+        # iterate through guedom and concatenate each for the text files to and new file
+        finalString = ""
+        finalString = """
+        <?xml version="1.0" encoding="UTF-8"?>
+        <?xml-stylesheet type="text/css" href="GudexStyleSheet.css"?>
+        <Gudex>
+        """
+        for gudemonName in Gudemon_Caught:
+            tempFile= open("GudemonTXTs/"+gudemonName+".txt", "r")
+            finalString = finalString + tempFile.read()
+            tempFile.close()
+        # replace gudex with format of gudex + new out put
+        finalString = finalString + """
+        </Gudex>"""
+        gudex1 = open("GudemonTXTs/Gudex.xml", "w")
+        gudex1.write(finalString)
+        gudex1.close()
 
 # Gameplay
 while gaming:
@@ -320,7 +366,8 @@ while gaming:
             onRules = False
         onGudex = button_clicked_on(gudex_rect, onGudex)
         if onGudex:
-            print("clicked Gudex")
+            webbrowser.open(
+                "file:///" + os.path.join(os.path.dirname(__file__), 'GudemonTXTs/Gudex.xml'))
             onGudex = False
 
     if START_GAME:
