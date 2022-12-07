@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
         <?xml-stylesheet type="text/css" href="GudexStyleSheet.css"?>
-        <Gudex>    <Gudetama>
-        <name name="Curry Gudetama">Curry Gudetama</name>
-        <id id="4">No.4</id>
-        <type type="food">Food</type>
-        <rarity rarity="common">Common</rarity>
-    </Gudetama>
+        <Gudex>
         </Gudex>

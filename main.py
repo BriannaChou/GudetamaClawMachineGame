@@ -78,7 +78,7 @@ onDropButton, START_DROP = False, False
 isDropping = True
 
 # Rules and Gudex Icons
-icon_width, icon_height = 80, 100
+icon_width, icon_height = 80, 90
 rules_x, rules_y = 810, 20
 gudex_x, gudex_y = 810, 150
 rules = pygame.image.load("images/RulesAndHowToPlayIcon.png")
@@ -116,7 +116,7 @@ gold = pygame.transform.scale(gold, eggDimensions)
 
 # Other Egg Variables
 eggGroup = pygame.sprite.Group()
-numEggs = 20
+numEggs = 20 #WILL be set at 20!!!!
 eggBounds = []
 eggColors = []
 FILLED = False
