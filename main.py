@@ -16,6 +16,7 @@ import random
 import webbrowser
 import pygame
 import os
+from tkinter import messagebox
 
 # Initialize the Pygame
 pygame.init()
@@ -96,6 +97,8 @@ joy_z = 0
 left_click = 1
 gaming = True
 GAME_COMPLETE = False
+font = pygame.font.SysFont(None, 40) #For text popup
+text = font.render("You Caught a Gudetama!", True, (0, 255, 0))
 
 # Claw Variables
 claw_x, claw_y = 0, 0
@@ -284,6 +287,10 @@ def drop_claw(is_dropping, x, y, width, height):
 
 
 def game_reset():
+    if NO_EGG_GRABBED:
+        messagebox.showinfo('Nice Try!', 'You missed the egg! Try again!')
+    else:
+        messagebox.showinfo('Congradulations!', 'You caught a Gudetama. Check out the Gudex to see it!')
     start_game = False
     start_drop = False
     dropping = True
