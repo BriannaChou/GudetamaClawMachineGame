@@ -201,7 +201,7 @@ def add_sprites():
         if not overlap:
             eggGroup.add(egg)
             collision_bounds.append(egg_rect)
-            eggBounds.append(pygame.Rect(egg.rect.x + egg_width // 4, egg.rect.y, egg_width // 2, egg_height))
+            eggBounds.append(pygame.Rect(egg.rect.x + egg_width // 4, egg.rect.y + egg_height - 1, egg_width // 2, egg_height))
             eggColors.append(eggValue)
             current += 1
             failures = 0
@@ -252,7 +252,7 @@ def drop_claw(is_dropping, x, y, width, height):
     global NO_EGG_GRABBED
     global CAUGHT_EGG_COLOR
     x_change, y_change, drop_complete = 0, 0, False
-    if y > 325:
+    if y > 350 or not NO_EGG_GRABBED:
         is_dropping = False
     if is_dropping:
         y_change = 5
