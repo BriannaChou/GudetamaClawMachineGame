@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
         <?xml-stylesheet type="text/css" href="GudexStyleSheet.css"?>
         <Gudex>    <Gudetama>
-        <name name="toyGudetama">Toy Gudetama</name>
-        <id id="6">No.6</id>
-        <type type="Object">Not too lazy today</type>
-        <rarity rarity="Uncommon">Uncommon</rarity>
+        <name name="Ramen Gudetama">Ramen Gudetama</name>
+        <id id="1">No.1</id>
+        <type type="food">Food</type>
+        <rarity rarity="common">Common</rarity>
     </Gudetama>
         </Gudex>
