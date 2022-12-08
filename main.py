@@ -56,11 +56,11 @@ clawMachineIconYellow = pygame.transform.scale(clawMachineIconYellow, (100, 150)
 
 # Joystick
 joystickDefaultIcon = pygame.image.load("images/joystick_default.png")
-joystickDefaultIcon = pygame.transform.scale(joystickDefaultIcon, (250, 250))
+joystickDefaultIcon = pygame.transform.scale(joystickDefaultIcon, (100, 100))
 joystickLeft = pygame.image.load("images/joystick_left.png")
-joystickLeft = pygame.transform.scale(joystickLeft, (250, 250))
+joystickLeft = pygame.transform.scale(joystickLeft, (100, 100))
 joystickRight = pygame.image.load("images/joystick_right.png")
-joystickRight = pygame.transform.scale(joystickRight, (250, 250))
+joystickRight = pygame.transform.scale(joystickRight, (100, 100))
 
 # Start Button
 startButton_x, startButton_y, startButton_width, startButton_height = 350, 550, 100, 40
@@ -341,7 +341,7 @@ while gaming:
     screen.blit(background, (0, 0))
     if event.type == pygame.QUIT:
         gaming = False
-    joystickDefault(-50, 450, joy_z)
+    joystickDefault(25, 500, joy_z)
     claw(claw_x, claw_y)
     screen.blit(startButton, (startButton_x, startButton_y))
     screen.blit(dropButton, (dropButton_x, dropButton_y))
@@ -374,7 +374,7 @@ while gaming:
                 START_DROP, onDropButton = button_clicked_off(drop_rect, START_DROP, onDropButton)
             claw_xChange, joy_z = move_claw(claw_x)
             claw_x += claw_xChange
-            joystickDefault(-50, 450, joy_z)
+            joystickDefault(25, 500, joy_z)
             claw(claw_x, claw_y)
 
         if START_DROP:
