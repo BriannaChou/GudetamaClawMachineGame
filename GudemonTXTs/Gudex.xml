@@ -1,29 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
         <?xml-stylesheet type="text/css" href="GudexStyleSheet.css"?>
-        <Gudex>    <Gudetama>
-        <name name="Curry Gudetama">Curry Gudetama</name>
-        <id id="4">No.4</id>
-        <type type="food">Food</type>
-        <rarity rarity="common">Common</rarity>
-    </Gudetama>    <Gudetama>
-        <name name="hamburgerGudetama">Hamburger Gudetama</name>
-        <id id="5">No.5</id>
-        <type type="food">American Gudetama?</type>
-        <rarity rarity="rare">rare</rarity>
-    </Gudetama>    <Gudetama>
-        <name name="goldenTrophyGudetama">Golden Trophy Gudetama</name>
-        <id id="10">No.10</id>
-        <type type="Object">CONGRATS</type>
-        <rarity rarity="legendary">Legendary</rarity>
-    </Gudetama>    <Gudetama>
-        <name name="toyGudetama">Toy Gudetama</name>
-        <id id="6">No.6</id>
-        <type type="Object">Not too lazy today</type>
-        <rarity rarity="Uncommon">Uncommon</rarity>
-    </Gudetama>    <Gudetama>
-        <name name="lifePerserverGudetama">Life Perserver Gudetama</name>
-        <id id="3">No.3</id>
-        <type type="Object">HELP!</type>
-        <rarity rarity="rare">rare</rarity>
-    </Gudetama>
+        <Gudex>
         </Gudex>
