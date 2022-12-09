@@ -16,7 +16,11 @@ import random
 import webbrowser
 import pygame
 import os
+from tkinter import *
 from tkinter import messagebox
+
+# Added line to work on Kayla's end
+root = Tk()
 
 # Initialize the Pygame
 pygame.init()
