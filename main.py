@@ -26,11 +26,20 @@ root = Tk()
 pygame.init()
 
 # Create lists for Gudex
-global Gudemon_List
+# global Gudemon_List
+global gudemonListCommon
+global gudemonListUncommon
+global gudemonListRare
+global gudemonListLegend
 global Gudemon_Caught
 
 Gudemon_Caught = []
-Gudemon_List = ["ramenGudetama", "curryGudetama", "eggGudetama", "toyGudetama", "hamburgerGudetama", "lifePerserverGudetama", "goldenTrophyGudetama"]
+# Gudemon_List = ["ramenGudetama", "curryGudetama", "eggGudetama", "toyGudetama", "hamburgerGudetama", "lifePerserverGudetama", "goldenTrophyGudetama"]
+# Seperating the gudemon_List that way the position of Gudemon within the game does not need to be hard coded. Adding new Gudemon is now simpler. Just add textfile and name of new Gudemon to the list.
+gudemonListCommon = ["ramenGudetama", "curryGudetama", "eggGudetama"]
+gudemonListUncommon = ["toyGudetama"]
+gudemonListRare = ["hamburgerGudetama", "lifePerserverGudetama"]
+gudemonListLegend =["goldenTrophyGudetama"]
 
 # Create the screen
 screen_width, screen_height = 800, 600
@@ -304,6 +313,8 @@ def game_reset():
     if len(eggGroup) == 0:
         FILLED = False
     return start_game, start_drop, dropping, game_complete, caught_egg, caught_egg_color, no_egg_grabbed
+
+
 # LOGAN: Function for adding gudemon to caught list if they are not yet added or returning nothing
 def add_Gudemon(color):
     #legendary 3, rare 2, uncommon 1, common 0
@@ -311,25 +322,31 @@ def add_Gudemon(color):
     #way to have pull in the data set instead of explictily calling parts of list
     # Way to sort either through sorting the list but better to have sort methods through the XML AND STYLESHEET
     if color == 3:
-        #rand = randomint()
-        Gudemon = Gudemon_List[6]
+        rang = len(gudemonListLegend) -1
+        rand = random.randint(0, rang)
+        Gudemon = gudemonListLegend[rand]
     if color == 2:
-        rand = random.randint(4, 5)
-        Gudemon = Gudemon_List[rand]
+        rang = len(gudemonListRare) -1
+        rand = random.randint(0, rang)
+        Gudemon = gudemonListRare[rand]
     if color == 1:
-        #rand = randomint()
-        Gudemon = Gudemon_List[3]
+        rang = len(gudemonListUncommon) -1
+        rand = random.randint(0, rang)
+        Gudemon = gudemonListUncommon[rand]
     if color == 0:
-        rand = random.randint(0, 2)
-        Gudemon = Gudemon_List[rand]
+        rang = len(gudemonListCommon) -1
+        rand = random.randint(0, rang)
+        Gudemon = gudemonListCommon[rand]
     if Gudemon not in Gudemon_Caught:
         # add new gudemon
         Gudemon_Caught.append(Gudemon)
-        # iterate through guedom and concatenate each for the text files to and new file
+        # iterate through gudeom and concatenate each for the text files to and new file
         finalString = ""
         finalString = """<?xml version="1.0" encoding="UTF-8"?>
         <?xml-stylesheet type="text/css" href="GudexStyleSheet.css"?>
-        <Gudex>"""
+        <Gudex>
+        <heading>The Gudex</heading>
+        """
         for gudemonName in Gudemon_Caught:
             tempFile= open("GudemonTXTs/"+gudemonName+".txt", "r")
             finalString = finalString + tempFile.read()

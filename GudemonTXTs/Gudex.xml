@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-        <?xml-stylesheet type="text/css" href="GudexStyleSheet.css"?>
-        <Gudex>
-        </Gudex>
+<?xml-stylesheet type="text/css" href="GudexStyleSheet.css"?>
+<Gudex>
+    <heading>The Gudex</heading>
+</Gudex>
