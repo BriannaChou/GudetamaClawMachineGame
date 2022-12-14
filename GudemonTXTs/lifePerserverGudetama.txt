@@ -1,6 +1,6 @@
     <Gudetama>
         <name name="lifePerserverGudetama">Life Perserver Gudetama</name>
         <id id="3">No.3</id>
-        <type type="Object">HELP!</type>
-        <rarity rarity="rare">rare</rarity>
+        <type type="Object">Type: HELP!</type>
+        <rarity rarity="rare">Rarity: rare</rarity>
     </Gudetama>

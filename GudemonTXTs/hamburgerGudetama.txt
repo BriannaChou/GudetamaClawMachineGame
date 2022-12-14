@@ -1,6 +1,6 @@
     <Gudetama>
         <name name="hamburgerGudetama">Hamburger Gudetama</name>
         <id id="5">No.5</id>
-        <type type="food">American Gudetama?</type>
-        <rarity rarity="rare">rare</rarity>
+        <type type="food">Type: American Gudetama?</type>
+        <rarity rarity="rare">Rarity: rare</rarity>
     </Gudetama>

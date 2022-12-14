@@ -1,6 +1,6 @@
     <Gudetama>
         <name name="goldenTrophyGudetama">Golden Trophy Gudetama</name>
         <id id="10">No.10</id>
-        <type type="Object">CONGRATS</type>
-        <rarity rarity="legendary">Legendary</rarity>
+        <type type="Object">CONGRATS!</type>
+        <rarity rarity="legendary">Rarity: Legendary</rarity>
     </Gudetama>

@@ -23,6 +23,7 @@ from tkinter import messagebox
 pygame.init()
 
 # Create lists for Gudex
+# global Gudemon_List
 global gudemonListCommon
 global gudemonListUncommon
 global gudemonListRare
@@ -297,7 +298,7 @@ def game_reset():
     if NO_EGG_GRABBED:
         messagebox.showerror('Nice Try!', 'You missed the egg! Try again!')
     else:
-        messagebox.showinfo('Congratulations!', 'You caught a Gudetama. Check out the Gudex to see it!')
+        messagebox.showinfo('Congradulations!', 'You caught a Gudetama. Check out the Gudex to see it!')
     start_game = False
     start_drop = False
     dropping = True

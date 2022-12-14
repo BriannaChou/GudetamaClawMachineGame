@@ -1,6 +1,6 @@
     <Gudetama>
         <name name="toyGudetama">Toy Gudetama</name>
         <id id="6">No.6</id>
-        <type type="Object">Not too lazy today</type>
-        <rarity rarity="Uncommon">Uncommon</rarity>
+        <type type="Object">Type: Not too lazy today</type>
+        <rarity rarity="Uncommon">Rarity: Uncommon</rarity>
     </Gudetama>
