@@ -19,14 +19,10 @@ import os
 from tkinter import *
 from tkinter import messagebox
 
-# Added line to work on Kayla's end
-root = Tk()
-
 # Initialize the Pygame
 pygame.init()
 
 # Create lists for Gudex
-# global Gudemon_List
 global gudemonListCommon
 global gudemonListUncommon
 global gudemonListRare
